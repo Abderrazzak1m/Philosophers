@@ -6,7 +6,10 @@ NAME= philo
 INCLUDE= philosophers.h
 
 
-FILES = main 
+FILES = main \
+		utils \
+		list_utils \
+		init
 
 OBJS= $(FILES:=.o)
 
