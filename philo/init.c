@@ -19,5 +19,6 @@ void init(t_philo **philo, char **argv)
         data->must_eat = ft_atoi(argv[5]);
     else
         data->must_eat = -1;
+    pthread_mutex_init(&data->print, NULL);
     init_philo(data, philo);
 }

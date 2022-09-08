@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:26:11 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/08 21:49:56 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/08 22:31:38 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_info
     int must_eat;
     int finish_eat;
     unsigned long start_time;
+    pthread_mutex_t print;
     
 }   t_info;
 
