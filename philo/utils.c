@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 20:55:43 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/08 22:43:34 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/13 21:15:14 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,37 @@ unsigned long current_time()
 	return(t.tv_sec*1000 + t.tv_usec/ 1000);
 }
 
-void print_action(t_philo *philo, char *msg)
+
+
+void *check_is_die(void *p)
 {
-	int time;
-	pthread_mutex_lock(&philo->data->print);
-	time = current_time() - philo->data->start_time;
-	prinft("%d\t%d\t%s", time, philo->id, msg);
-	pthread_mutex_unlock(&philo->data->print);
-	
-	
-	
+	t_philo *tmp;
+	t_philo **philo;
+	int t;
+	philo = p;
+	tmp = *philo;
+	while(tmp != NULL)
+	{
+		t = current_time() - tmp->data->start_time;
+		if (t > (tmp->data->time_to_die ))
+		{
+			
+			printf("%d is die\n",tmp->id);
+			exit(0);
+			return (NULL);
+		
+		}
+		if(tmp->next == NULL)
+		{
+			tmp = *philo;
+		}
+		else
+			tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+void ft_join(t_philo **philo)
+{
+
 }

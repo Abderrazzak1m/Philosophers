@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:26:11 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/08 22:31:38 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/13 22:11:03 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,18 @@ typedef struct s_info
     
 }   t_info;
 
+typedef struct s_forks
+{
+    pthred_mutex_t *leftfork;
+    pthread_mutex_t *rightfork;
+}   t_forks;
+
 int	ft_atoi(const char *str);
 void append(t_philo **philo, t_philo *newphilo);
 t_philo *new(t_info *data, int id);
 void init(t_philo **philo, char **argv);
+unsigned long current_time();
+void *check_is_die(void *p);
+
 
 #endif
