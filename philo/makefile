@@ -9,7 +9,8 @@ INCLUDE= philosophers.h
 FILES = main \
 		utils \
 		list_utils \
-		init
+		init \
+		tools
 
 OBJS= $(FILES:=.o)
 

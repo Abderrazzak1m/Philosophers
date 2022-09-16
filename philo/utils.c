@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 20:55:43 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/13 21:15:14 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/16 19:01:45 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void *check_is_die(void *p)
 {
 	t_philo *tmp;
 	t_philo **philo;
+	int	time;
 	int t;
 	philo = p;
 	tmp = *philo;
@@ -58,9 +59,12 @@ void *check_is_die(void *p)
 		t = current_time() - tmp->data->start_time;
 		if (t > (tmp->data->time_to_die ))
 		{
-			
-			printf("%d is die\n",tmp->id);
-			exit(0);
+			tmp->data->is_die = 1;
+			usleep(100);
+			pthread_mutex_lock(&tmp->data->print);
+			time = current_time() - tmp->data->start_time;
+			printf("%d %d is die\n",tmp->id, time);
+			//exit(0);
 			return (NULL);
 		
 		}
@@ -74,7 +78,7 @@ void *check_is_die(void *p)
 	return (NULL);
 }
 
-void ft_join(t_philo **philo)
+/*void ft_join(t_philo **philo)
 {
 
-}
+}*/

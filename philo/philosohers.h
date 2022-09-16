@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:26:11 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/13 22:11:03 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/16 17:58:06 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct s_philo
     int id;
     pthread_mutex_t fork;
     int nbr_eat;
-    struct s_philo *next;
+    int             time;
+    struct s_philo  *next;
     struct s_philo *prev;
     struct s_info *data;
 }   t_philo;
@@ -38,6 +39,7 @@ typedef struct s_info
     int time_to_eat;
     int time_to_sleep;
     int must_eat;
+    int is_die;
     int finish_eat;
     unsigned long start_time;
     pthread_mutex_t print;
@@ -46,7 +48,7 @@ typedef struct s_info
 
 typedef struct s_forks
 {
-    pthred_mutex_t *leftfork;
+    pthread_mutex_t *leftfork;
     pthread_mutex_t *rightfork;
 }   t_forks;
 
@@ -56,6 +58,7 @@ t_philo *new(t_info *data, int id);
 void init(t_philo **philo, char **argv);
 unsigned long current_time();
 void *check_is_die(void *p);
+void	tasks(t_philo *philo);
 
 
 #endif
