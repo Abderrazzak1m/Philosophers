@@ -3,14 +3,14 @@ CFLAGS = -Wall -Werror -Wextra -g
 
 NAME= philo
 
-INCLUDE= philosophers.h
+INCLUDE= ./include/philo.h
 
 
-FILES = main \
-		utils \
-		list_utils \
-		init \
-		tools
+FILES = ./src/main \
+		./src/utils \
+		./src/list_utils \
+		./src/init \
+		./src/tools
 
 OBJS= $(FILES:=.o)
 
