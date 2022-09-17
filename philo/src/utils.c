@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:08:32 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/17 19:09:55 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/17 20:04:46 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	*check_is_die(void *p)
 	{
 		if (current_time() > tmp->time || \
 			tmp->data->finish_eat == tmp->data->number_of_philosophers)
-			return (checker);
+			return (checker(tmp));
 		if (tmp->next == NULL)
 			tmp = *philo;
 		else
