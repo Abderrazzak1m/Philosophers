@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:07:47 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/17 19:57:02 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/19 15:59:56 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print(t_philo *philo, char task)
 		philo->data->number_of_philosophers)
 		return ;
 	else
-		pthread_mutex_lock(&philo->data->print);
+	 	pthread_mutex_lock(&philo->data->print);
 	time = current_time() - philo->data->start_time;
 	if (task == 'f')
 		printf("%d\t%d\thas taken a fork\n", time, philo->id);

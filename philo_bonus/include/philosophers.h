@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:33:28 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/17 19:34:45 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/19 16:54:40 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/time.h>
+# include <semaphore.h>
+# include <fcntl.h>
+# include <signal.h>
 
 typedef struct s_philo
 {
-	pthread_t		philo;
+	int				pid;
 	int				id;
 	int				nbr_eat;
 	unsigned long	time;
@@ -37,9 +40,14 @@ typedef struct s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
-	int				is_die;
 	int				finish_eat;
 	unsigned long	start_time;
-
+	sem_t			*forks;
+	sem_t			*print;
 }	t_info;
+
+int	init(t_philo **philo, char **argv);
+int	ft_atoi(const char *str);
+int	append(t_philo **philo, t_philo *newphilo);
+t_philo	*new(t_info *data, int id);
 #endif
