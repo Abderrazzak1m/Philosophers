@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:33:28 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/19 16:54:40 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/21 01:41:09 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_philo
 	int				id;
 	int				nbr_eat;
 	unsigned long	time;
+	int				is_die;
 	struct s_philo	*next;
 	struct s_philo	*prev;
 	struct s_info	*data;
@@ -41,13 +42,19 @@ typedef struct s_info
 	int				time_to_sleep;
 	int				must_eat;
 	int				finish_eat;
+	sem_t			*done;
 	unsigned long	start_time;
 	sem_t			*forks;
 	sem_t			*print;
 }	t_info;
 
-int	init(t_philo **philo, char **argv);
-int	ft_atoi(const char *str);
-int	append(t_philo **philo, t_philo *newphilo);
-t_philo	*new(t_info *data, int id);
+int				init(t_philo **philo, char **argv);
+int				ft_atoi(const char *str);
+int				append(t_philo **philo, t_philo *newphilo);
+t_philo			*new(t_info *data, int id);
+unsigned long	current_time(void);
+void			tasks(t_philo *philo);
+void			ft_usleep(unsigned long time, unsigned long start);
+void			print(t_philo *philo, char task);
+void			*check_is_die(void *p);
 #endif

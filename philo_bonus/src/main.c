@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/20 21:47:40 by amiski            #+#    #+#             */
+/*   Updated: 2022/09/20 22:14:11 by amiski           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philosophers.h"
 
 static int	check_args(int argc, char **argv)
@@ -28,10 +40,15 @@ static int	check_args(int argc, char **argv)
 
 void	ft_clear(t_philo **philo)
 {
+	t_philo	*tmp;
 	t_philo	*forfree;
-	// t_philo	*tmp;
 
-	// tmp = *philo;
+	tmp = *philo;
+	while (tmp)
+	{
+		kill(tmp->pid, SIGINT);
+		tmp = tmp->next;
+	}
 	while (*philo)
 	{
 		forfree = *philo;
@@ -40,15 +57,17 @@ void	ft_clear(t_philo **philo)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_philo *philo;
-    if (!check_args(argc, argv))
+	int		i;
+	t_philo	*philo;
+
+	if (!check_args(argc, argv))
 		return (0);
-    init(&philo, argv);
-    while(philo)
-    {
-        printf("id %d\n", philo->data->time_to_die);
-        philo = philo->next;
-    }
+	init(&philo, argv);
+	i = -1;
+	while (++i < philo->data->number_of_philosophers)
+		sem_wait(philo->data->done);
+	ft_clear(&philo);
+	return (0);
 }

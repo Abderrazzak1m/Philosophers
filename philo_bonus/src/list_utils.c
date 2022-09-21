@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/20 22:36:17 by amiski            #+#    #+#             */
+/*   Updated: 2022/09/20 22:36:21 by amiski           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philosophers.h"
+
 t_philo	*new(t_info *data, int id)
 {
 	t_philo	*philo;
@@ -10,6 +23,7 @@ t_philo	*new(t_info *data, int id)
 	philo->prev = NULL;
 	philo->data = data;
 	philo->id = id;
+	philo->is_die = 0;
 	philo->nbr_eat = 0;
 	return (philo);
 }

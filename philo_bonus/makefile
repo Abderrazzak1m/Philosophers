@@ -9,7 +9,8 @@ INCLUDE= ./include/philosophers.h
 FILES = ./src/main \
 		./src/init \
 		./src/list_utils \
-		./src/utils
+		./src/utils \
+		./src/tools
 
 
 OBJS= $(FILES:=.o)

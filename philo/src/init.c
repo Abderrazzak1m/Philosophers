@@ -6,7 +6,7 @@
 /*   By: amiski <amiski@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:08:43 by amiski            #+#    #+#             */
-/*   Updated: 2022/09/17 19:21:21 by amiski           ###   ########.fr       */
+/*   Updated: 2022/09/19 19:23:31 by amiski           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	init_philo(t_info *data, t_philo **philo)
 	i = -1;
 	while (++i < data->number_of_philosophers)
 	{
-		if (append(philo, new(data, i)) == 0)
+		if (append(philo, new(data, i + 1)) == 0)
 			return (0);
 	}
 	(*philo)->data->start_time = current_time();
